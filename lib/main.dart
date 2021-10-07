@@ -1,53 +1,29 @@
-import 'package:dynamic_widget/dynamic_widget.dart';
-import 'package:dynamic_widget_app_task/screens/home_screen.dart';
-import 'package:dynamic_widget_app_task/screens/plant_detail_screen.dart';
-import 'package:dynamic_widget_app_task/widget_json.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-void main() => runApp(const MyApp());
+import 'package:dynamic_widget_app_task/routes/app_pages.dart';
+import 'package:dynamic_widget_app_task/utils/ui_helper.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: UIHelper.darkgreencolor,
+    statusBarColor: UIHelper.darkgreencolor,
+  ));
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      getPages: [
-        GetPage(
-          name: '/',
-          page: () => HomeScreen(),
-        ),
-        GetPage(
-          name: '/plant_detail_screen',
-          page: () => PlantDetailScreen(),
-        ),
-      ],
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: Text("Dynamic Widget"),
-      //   ),
-      //   body: DynamicWidgetBuilder.build(
-      //     columnJson,
-      //     context,
-      //     DefaultClickListener(),
-      //   ),
-      // ),
+      getPages: AppPages.pages,
+      defaultTransition: Transition.fade,
     );
-  }
-}
-
-class DefaultClickListener implements ClickListener {
-  @override
-  void onClicked(String? event) {
-    print("Receive click event: " + (event ?? ""));
   }
 }
