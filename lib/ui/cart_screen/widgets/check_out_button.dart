@@ -13,42 +13,50 @@ class CheckOutButton extends StatelessWidget {
     final CartController cartController = Get.find();
     return GestureDetector(
       onTap: () async {
-        var result = await Get.defaultDialog(
-          title: "Checkout",
-          middleText:
-              "Press confirm to buy selected plants\nTotal Prize: ${cartController.totalPrice.value} Rs",
-          confirm: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Color.fromRGBO(103, 133, 73, 1),
-            ),
-            onPressed: () {
-              Get.back(result: true);
-            },
-            child: Text(
-              "Confirm",
-              style: TextStyle(
-                color: Colors.white,
+        if (cartController.totalPrice.value != 0.0) {
+          var result = await Get.defaultDialog(
+            title: "Checkout",
+            middleText:
+                "Press confirm to buy selected plants\nTotal Prize: ${cartController.totalPrice.value} Rs",
+            confirm: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromRGBO(103, 133, 73, 1),
+              ),
+              onPressed: () {
+                Get.back(result: true);
+              },
+              child: Text(
+                "Confirm",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-          cancel: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: UIHelper.darkgreencolor,
-            ),
-            onPressed: () {
-              Get.back(result: false);
-            },
-            child: Text(
-              "Cancel",
-              style: TextStyle(
-                color: Colors.white,
+            cancel: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: UIHelper.darkgreencolor,
+              ),
+              onPressed: () {
+                Get.back(result: false);
+              },
+              child: Text(
+                "Cancel",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-        ) as bool?;
-        if (result != null && result) {
-          cartController.checkout();
-          _sendOrderPlacedNotification();
+          ) as bool?;
+          if (result != null && result) {
+            cartController.checkout();
+            _sendOrderPlacedNotification();
+          }
+        } else {
+          Get.snackbar(
+            "Add Items First",
+            "Cant checkout your cart is empty",
+            backgroundColor: UIHelper.darkgreencolor,
+          );
         }
       },
       child: Container(

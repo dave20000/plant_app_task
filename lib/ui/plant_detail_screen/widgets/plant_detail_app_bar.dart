@@ -59,15 +59,17 @@ class PlantDetailAppBar extends StatelessWidget {
             children: [
               LikeButton(
                 circleColor: CircleColor(
-                    start: Color(0xFF1D7503), end: Color(0xFF35FF79)),
+                  start: UIHelper.amberColor,
+                  end: UIHelper.lightgreencolor,
+                ),
                 bubblesColor: BubblesColor(
-                  dotPrimaryColor: Color(0xFF48E533),
-                  dotSecondaryColor: Color(0xFF2BFD47),
+                  dotPrimaryColor: UIHelper.lightgreencolor,
+                  dotSecondaryColor: UIHelper.amberColor,
                 ),
                 likeBuilder: (bool isLiked) {
                   return Icon(
                     isLiked ? Icons.favorite : Icons.favorite_border,
-                    color: isLiked ? UIHelper.lightgreencolor : Colors.black,
+                    color: isLiked ? UIHelper.darkgreencolor : Colors.black,
                     size: 24,
                   );
                 },
