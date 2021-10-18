@@ -1,0 +1,4 @@
+enum AnimationsProperties {
+  opacity,
+  translateX,
+}

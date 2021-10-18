@@ -21,4 +21,7 @@ class UIHelper {
   static Color lightgreencolor = Color.fromRGBO(228, 255, 212, 1.0);
   static Color amberColor = Colors.amber;
   static Color lightAmberColor = Colors.amberAccent.shade100;
+  static const Color bottomSheetColor = Color(0xFFA0DB15);
+
+  static double minCartItemBottomSheetHeight = 100;
 }

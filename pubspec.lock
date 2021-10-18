@@ -43,6 +43,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  bouncing_widget:
+    dependency: "direct main"
+    description:
+      name: bouncing_widget
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   characters:
     dependency: transitive
     description:
@@ -331,6 +338,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.3"
+  simple_animations:
+    dependency: "direct main"
+    description:
+      name: simple_animations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -51,6 +51,6 @@ class CartController extends GetxController {
 
   void checkout() {
     cartProducts.clear();
-    totalPrice = 0.0.obs;
+    totalPrice.value = 0.0;
   }
 }

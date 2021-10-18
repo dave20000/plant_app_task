@@ -4,8 +4,6 @@ import 'package:dynamic_widget_app_task/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:dynamic_widget_app_task/controllers/plant_controller.dart';
-
 class NavigationRailPlant extends StatelessWidget {
   final double width;
   final int selectedIndex;

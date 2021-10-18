@@ -1,13 +1,13 @@
 import 'package:badges/badges.dart';
-import 'package:dynamic_widget_app_task/utils/ui_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:like_button/like_button.dart';
-import 'package:onesignal_flutter/onesignal_flutter.dart';
 
+import 'package:dynamic_widget_app_task/controllers/base_controller.dart';
 import 'package:dynamic_widget_app_task/controllers/cart_controller.dart';
 import 'package:dynamic_widget_app_task/models/cart.dart';
 import 'package:dynamic_widget_app_task/models/plant.dart';
+import 'package:dynamic_widget_app_task/utils/ui_helper.dart';
 
 class PlantDetailAppBar extends StatelessWidget {
   final Plant plant;
@@ -18,34 +18,10 @@ class PlantDetailAppBar extends StatelessWidget {
     required this.quantity,
   }) : super(key: key);
 
-  void _handleSendNotification() async {
-    var deviceState = await OneSignal.shared.getDeviceState();
-    if (deviceState == null || deviceState.userId == null) return;
-    var playerId = deviceState.userId!;
-    var notification = OSCreateNotification(
-      playerIds: [playerId],
-      content: "One item added to cart",
-      heading: "Checkout",
-      buttons: [
-        OSActionButton(text: "test1", id: "id1"),
-      ],
-      url: "PlantApp://plantapp.com/cart",
-    );
-    var response = await OneSignal.shared.postNotification(notification);
-    print("Sent notification with response: $response");
-  }
-
-  void removeOneSignalCartAbandondedTag() async {
-    await OneSignal.shared.deleteTags(['Cart']).then((response) {
-      print("Successfully delete tags with response: $response");
-    }).catchError((error) {
-      print("Encountered an error sending tags: $error");
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final CartController cartController = Get.find();
+    final BaseController baseController = Get.find();
     return Obx(
       () => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,9 +53,9 @@ class PlantDetailAppBar extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   if (cartController.cartProducts.isEmpty) {
-                    removeOneSignalCartAbandondedTag();
+                    baseController.removeOneSignalCartAbandondedTag();
                   }
-                  _handleSendNotification();
+                  baseController.sendItemAddedNotification();
                   cartController.addProduct(
                     Cart(
                       cartItemId: DateTime.now().millisecondsSinceEpoch,

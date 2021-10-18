@@ -1,12 +1,14 @@
+import 'package:dynamic_widget_app_task/ui/widgets/fade_in_animation.dart';
+import 'package:dynamic_widget_app_task/ui/widgets/side_in_animation_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:dynamic_widget_app_task/controllers/plant_controller.dart';
-import 'package:dynamic_widget_app_task/ui/plant_detail_screen/widgets/bottom_plant_detail.dart';
-import 'package:dynamic_widget_app_task/ui/plant_detail_screen/widgets/curve_painter.dart';
-import 'package:dynamic_widget_app_task/ui/plant_detail_screen/widgets/plant_detail_app_bar.dart';
+import 'package:dynamic_widget_app_task/ui/screens/plant_detail_screen/widgets/bottom_plant_detail.dart';
+import 'package:dynamic_widget_app_task/ui/screens/plant_detail_screen/widgets/curve_painter.dart';
+import 'package:dynamic_widget_app_task/ui/screens/plant_detail_screen/widgets/plant_detail_app_bar.dart';
 
 class PlantDetailScreen extends StatefulWidget {
   const PlantDetailScreen({Key? key}) : super(key: key);
@@ -79,79 +81,91 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          plantController.plantList[plantListId].name,
-                          style: GoogleFonts.acme(
-                            textStyle: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                        SideInAnimation(
+                          delay: 1,
+                          child: Text(
+                            plantController.plantList[plantListId].name,
+                            style: GoogleFonts.acme(
+                              textStyle: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              wordSpacing: 1.4,
+                              letterSpacing: 1,
                             ),
-                            wordSpacing: 1.4,
-                            letterSpacing: 1,
                           ),
                         ),
                         SizedBox(
                           height: 8,
                         ),
-                        Text(
-                          plantController.plantList[plantListId].details,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey.shade700,
+                        SideInAnimation(
+                          delay: 2,
+                          child: Text(
+                            plantController.plantList[plantListId].details,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey.shade700,
+                            ),
                           ),
                         ),
                         SizedBox(
                           height: 16,
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              quantityCount.toString() +
-                                  " * " +
-                                  plantController.plantList[plantListId].prize
-                                      .toString() +
-                                  " Rs",
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.only(
-                                left: 24,
-                              ),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(),
-                                color: Colors.white,
-                                boxShadow: const [
-                                  BoxShadow(
-                                    color: Colors.greenAccent,
-                                    blurRadius: 8.0,
-                                    spreadRadius: 2,
-                                    offset: Offset(1, 1),
-                                  ),
-                                ],
-                              ),
-                              child: InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    quantityCount++;
-                                  });
-                                },
-                                child: Icon(
-                                  Icons.add,
-                                  size: 16,
+                        SideInAnimation(
+                          delay: 2,
+                          child: Row(
+                            children: [
+                              Text(
+                                quantityCount.toString() +
+                                    " * " +
+                                    plantController.plantList[plantListId].prize
+                                        .toString() +
+                                    " Rs",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ),
-                          ],
+                              Container(
+                                margin: EdgeInsets.only(
+                                  left: 24,
+                                ),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(),
+                                  color: Colors.white,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Colors.greenAccent,
+                                      blurRadius: 8.0,
+                                      spreadRadius: 2,
+                                      offset: Offset(1, 1),
+                                    ),
+                                  ],
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      quantityCount++;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.add,
+                                    size: 16,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
                   ),
                   Spacer(),
-                  BottomPlantDetail(plantListId: plantListId),
+                  SideInAnimation(
+                    delay: 4,
+                    child: BottomPlantDetail(plantListId: plantListId),
+                  ),
                   SizedBox(
                     height: height * 0.02,
                   ),
