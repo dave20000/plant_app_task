@@ -1,5 +1,3 @@
-import 'package:dynamic_widget_app_task/ui/widgets/fade_in_animation.dart';
-import 'package:dynamic_widget_app_task/ui/widgets/side_in_animation_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +7,7 @@ import 'package:dynamic_widget_app_task/controllers/plant_controller.dart';
 import 'package:dynamic_widget_app_task/ui/screens/plant_detail_screen/widgets/bottom_plant_detail.dart';
 import 'package:dynamic_widget_app_task/ui/screens/plant_detail_screen/widgets/curve_painter.dart';
 import 'package:dynamic_widget_app_task/ui/screens/plant_detail_screen/widgets/plant_detail_app_bar.dart';
+import 'package:dynamic_widget_app_task/ui/widgets/side_in_animation_widget.dart';
 
 class PlantDetailScreen extends StatefulWidget {
   const PlantDetailScreen({Key? key}) : super(key: key);

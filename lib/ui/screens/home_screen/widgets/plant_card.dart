@@ -61,6 +61,9 @@ class PlantCard extends StatelessWidget {
                   padding: EdgeInsets.all(4.0),
                   child: Text(
                     plant.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.acme(
                       textStyle: TextStyle(
                         fontSize: 18,
